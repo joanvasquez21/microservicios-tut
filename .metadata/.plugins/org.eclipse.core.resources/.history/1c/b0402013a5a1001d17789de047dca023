@@ -1,0 +1,5 @@
+package com.usuario.service.entities;
+
+public class Carro {
+
+}

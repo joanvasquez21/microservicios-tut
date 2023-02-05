@@ -1,0 +1,9 @@
+package com.jojov.orderapi.security;
+
+import org.springframework.web.filter.OncePerRequestFilter;
+
+//onceper se ejecuta para cada peticion que llegue a spring se va a ejecutar el filtro
+public class TokenAuthenticationFilter extends OncePerRequestFilter {
+
+	
+}

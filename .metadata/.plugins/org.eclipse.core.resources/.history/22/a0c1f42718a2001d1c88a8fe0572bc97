@@ -1,0 +1,5 @@
+package com.moto.service.repository;
+
+public interface MotoRepository {
+
+}

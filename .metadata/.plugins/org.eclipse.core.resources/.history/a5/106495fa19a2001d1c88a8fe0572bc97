@@ -1,0 +1,5 @@
+package com.moto.service.services;
+
+public class MotoService {
+
+}

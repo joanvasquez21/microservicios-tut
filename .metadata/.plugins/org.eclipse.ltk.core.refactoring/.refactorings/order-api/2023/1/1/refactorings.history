@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;order-api/src/main/resources/init.sql&apos; to &apos;data.sql&apos;" description="Rename resource &apos;init.sql&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/init.sql" name="data.sql" stamp="1672964951952" updateReferences="true"/>
+</session>

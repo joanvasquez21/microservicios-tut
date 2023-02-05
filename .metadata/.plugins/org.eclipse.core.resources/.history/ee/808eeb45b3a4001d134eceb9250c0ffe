@@ -1,0 +1,5 @@
+package com.usuario.service.feignclients;
+
+public class MotoFeignClient {
+
+}

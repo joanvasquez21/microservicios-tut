@@ -1,0 +1,33 @@
+package com.usuario.service.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.usuario.service.entidades.User;
+import com.usuario.service.service.UserService;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+	@Autowired
+	private UserService userService;
+	
+	@GetMapping
+	public ResponseEntity<List<User>> listUsers(User user){
+		List<User> users = userService.getAll(user);
+		if(users.isEmpty()) {
+			return ResponseEntity.noContent();
+		}
+		return ResponseEntity<List<User>>
+		
+	}
+	
+	
+}

@@ -1,0 +1,90 @@
+package com.usuario.service.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.usuario.service.UsuarioServiceApplication;
+import com.usuario.service.entidades.User;
+import com.usuario.service.feignclients.CarroFeignClient;
+import com.usuario.service.feignclients.MotoFeignClient;
+import com.usuario.service.modelos.Carro;
+import com.usuario.service.modelos.Moto;
+import com.usuario.service.repository.UserRepository;
+
+@Service
+public class UserService {
+
+	//con restTemplate obtenemos datos
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@Autowired
+	private UserRepository userRepository;
+	 
+	@Autowired
+	private CarroFeignClient carroFeignClient;
+	
+	@Autowired
+	private MotoFeignClient motoFeignClient;
+	
+	
+	public List<Carro> getCarros(int usuarioId){ 
+		List<Carro> carros = restTemplate.getForObject("http://localhost:8002/carro/usuario/" + usuarioId, List.class);
+		return carros;
+	}
+	
+	public List<Moto > getMotos(int usuarioId){ 
+		List<Moto> motos = restTemplate.getForObject("http://localhost:8803/moto/usuario/" + usuarioId, List.class);
+		return motos;
+	}
+	
+	public Carro saveCarro(int usuarioId, Carro carro) {
+		 carro.setUsuarioId(usuarioId);
+		 Carro nuevoCarro = carroFeignClient.save(carro);
+		 return nuevoCarro;
+	}
+
+	public List<User> getAll(User user){
+		return userRepository.findAll();
+	}
+	
+	public User getUserById(int id) {
+		return userRepository.findById(id).orElse(null);
+	}
+	
+	public  User save(User user) {
+		User newUser = userRepository.save(user);
+		return newUser;
+	}
+	public Moto saveMoto(int usuarioId, Moto moto) {
+		moto.setUsuarioId(usuarioId);
+		Moto nuevaMoto = motoFeignClient.save(moto);
+		return nuevaMoto;
+	}
+	//obtendra motos y vehiculos
+	public Map<String, Object> getUsuarioAndVehiculos(int usuarioId){
+		Map<String, Object> resultado = new HashMap<>();
+		
+		User usuario = userRepository.findById(usuarioId).orElse(null);
+		if(usuario == null) {
+			resultado.put("mensaje", "El usuario no existe");
+		}
+		resultado.put("Usuario", usuario);
+		
+		List<Carro> carros = carroFeignClient.getCarro(usuarioId);
+		if(carros.isEmpty()) {
+			resultado.put("Carros", "El usuario no tiene carros");
+		}
+		else {
+			resultado.put("Carros", carros);
+		}
+	}
+	
+	
+}

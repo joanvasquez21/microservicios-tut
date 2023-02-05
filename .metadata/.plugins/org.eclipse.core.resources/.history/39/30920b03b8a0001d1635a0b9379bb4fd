@@ -1,0 +1,12 @@
+package com.usuario.service.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.usuario.service.entidades.User;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+}

@@ -1,0 +1,8 @@
+package com.moto.service.entity;
+
+
+@Entity
+public class Moto {
+
+	
+}

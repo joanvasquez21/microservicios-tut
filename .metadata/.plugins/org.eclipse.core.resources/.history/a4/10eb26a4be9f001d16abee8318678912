@@ -1,0 +1,5 @@
+package com.jojov.orderapi.security;
+
+public class UserPrincipal {
+
+}

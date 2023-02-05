@@ -1,0 +1,8 @@
+package com.moto.service.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Moto {
+
+}

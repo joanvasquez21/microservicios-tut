@@ -1,0 +1,13 @@
+package com.usuario.service.entities;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Carro {
+
+	private int id;
+	
+	private String marca;
+	
+	private String modelo;
+}
