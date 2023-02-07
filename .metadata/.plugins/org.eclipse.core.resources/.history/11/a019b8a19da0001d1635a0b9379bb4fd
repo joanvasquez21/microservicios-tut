@@ -1,5 +1,0 @@
-package com.jojov.orderapi.config;
-
-public class SwaggerConfig {
-
-}
